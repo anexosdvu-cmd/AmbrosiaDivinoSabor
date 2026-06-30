@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ambrosia Divino Sabor - Panadería artesanal de masa madre y pastelería de autor. Elegancia y calidez en cada bocado.">
+  <meta name="theme-color" content="#8D4B32">
+  <title>Ambrosia Divino Sabor | Panadería y Pastelería</title>
+  
+  <!-- Estilos y Favicon -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER / NAVIGATION
+       ========================================================================== */ -->
+  <!-- Top Bar (Defer style) -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-left">
+        <span>Despachos en todo Santiago | Llámanos al +56 9 5518 2841</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto & Sucursales</a>
+        <a href="#banqueteria" class="top-bar-cart">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Mi Cotización (<span id="cartCountBadge">0</span>)
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#home" class="logo" style="display: flex; align-items: center; gap: 12px; flex-direction: row;">
+        <img src="assets/logo.jpg" alt="Logo Ambrosia Divino Sabor" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--color-accent); box-shadow: var(--shadow-sm);">
+        <div style="display: flex; flex-direction: column;">
+          <span class="logo-main">Ambrosía</span>
+          <span class="logo-sub">Divino Sabor</span>
+        </div>
+      </a>
+
+      <!-- Search Bar Placeholder to look like defer.cl -->
+      <div class="header-search-bar">
+        <input type="text" id="searchInput" placeholder="Buscar empanadas, panes, postres...">
+        <button>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+      </div>
+      
+      <nav aria-label="Navegación principal">
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link active">Inicio</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'breads\']').click()">Panes</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'empanadas\']').click()">Empanadas</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'platos\']').click()">Platos Caseros</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'pastries\']').click()">Pastelería</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'cocteleria\']').click()">Coctelería</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'pizzas\']').click()">Pizzas</a></li>
+          <li><a href="#menu" class="nav-link" onclick="document.querySelector('[data-filter=\'veggie\']').click()">Veggie</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-actions">
+        <button id="authBtn" class="cart-btn" aria-label="Iniciar Sesión" onclick="openAuthModal()" style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="authLabel" style="font-size: 0.65rem; font-weight:600;">Ingresar</span>
+        </button>
+        <button id="cartBtn" class="cart-btn" aria-label="Ver carrito">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+      </div>
+
+      <button class="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         HERO SECTION
+         ========================================================================== */ -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-tagline">Panadería & Pastelería</div>
+          <h1 class="hero-title">El Divino Sabor de Compartir y Celebrar</h1>
+          <p class="hero-description">
+            Elaboramos panadería rústica de masa madre y pastelería fina de autor. Un viaje sensorial de sabores nobles diseñado para hacer de cada momento un recuerdo inolvidable.
+          </p>
+          <div class="hero-actions">
+            <a href="#menu" class="btn btn-primary">Ver Vitrina</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         ABOUT & VALUES SECTION
+         ========================================================================== */ -->
+    <section class="section-padding" id="nosotros">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">Nuestra Filosofía</h2>
+          <p class="section-subtitle">Combinamos el respeto por los procesos tradicionales con una estética sofisticada para brindar una experiencia gastronómica única.</p>
+        </div>
+        
+        <div class="values-grid">
+          <!-- Valor 1 -->
+          <article class="value-card reveal">
+            <div class="value-icon">
+              <!-- Icon: Wheat/Sprout -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Ingredientes Nobles</h3>
+            <p>Utilizamos harinas orgánicas, fermentos naturales de masa madre, chocolates belgas premium y frutas de estación seleccionadas directamente de huertos locales.</p>
+          </article>
+          
+          <!-- Valor 2 -->
+          <article class="value-card reveal reveal-delay-1">
+            <div class="value-icon">
+              <!-- Icon: Sparkles -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/><path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5Z"/><path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z"/></svg>
+            </div>
+            <h3>Elegancia Cálida</h3>
+            <p>Nuestras creaciones fusionan una presentación visual pulcra e impecable con el sabor hogareño de las recetas horneadas con dedicación y paciencia.</p>
+          </article>
+          
+          <!-- Valor 3 -->
+          <article class="value-card reveal reveal-delay-2">
+            <div class="value-icon">
+              <!-- Icon: Event Setup -->
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="m9 16 2 2 4-4"/></svg>
+            </div>
+            <h3>Propuesta Integral</h3>
+            <p>No solo proveemos alimentos; coordinamos todo el montaje decorativo de las estaciones de comida, vajilla rústica, cristalería y servicio de garzones.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================================
+         CÓMO HACER MI PEDIDO SECTION
+         ========================================================================== */ -->
+    <section class="section-padding" id="how-to-order" style="background-color: var(--bg-card); position: relative; overflow: hidden;">
+      <!-- Subtle background decoration -->
+      <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%); opacity: 0.1; border-radius: 50%;"></div>
+      <div style="position: absolute; bottom: -50px; left: -50px; width: 300px; height: 300px; background: radial-gradient(circle, var(--color-primary) 0%, transparent 70%); opacity: 0.1; border-radius: 50%;"></div>
+
+      <div class="container" style="position: relative; z-index: 1;">
+        <div class="text-center" style="margin-bottom: 40px;">
+          <h2 class="section-title">Cómo hacer mi pedido</h2>
+          <p class="section-subtitle">Realiza tu encargo en tres simples pasos y nosotros nos encargamos del resto.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; text-align: center;">
+          <!-- Step 1 -->
+          <div style="padding: 35px 20px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width: 65px; height: 65px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.6l3-3h6.8l3 3H21a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2"/><circle cx="8" cy="18" r="3"/><circle cx="18" cy="18" r="3"/><path d="M11 18h4"/></svg>
+            </div>
+            <h3 style="font-size: 1.3rem; color: var(--color-primary-dark); margin-bottom: 15px; font-family: 'Playfair Display', serif;">1. Delivery o Retiro</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Elige si prefieres que te enviemos tus productos a domicilio (dentro de San Antonio) o si prefieres retirarlos directamente en nuestro local.</p>
+          </div>
+          
+          <!-- Step 2 -->
+          <div style="padding: 35px 20px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width: 65px; height: 65px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+            </div>
+            <h3 style="font-size: 1.3rem; color: var(--color-primary-dark); margin-bottom: 15px; font-family: 'Playfair Display', serif;">2. Fecha y Hora</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Define cuándo necesitas tu pedido. Recuerda que para grandes pasteles y coctelería requerimos al menos 48 horas de anticipación.</p>
+          </div>
+          
+          <!-- Step 3 -->
+          <div style="padding: 35px 20px; background: var(--bg-main); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)'">
+            <div style="width: 65px; height: 65px; border-radius: 50%; background: rgba(212, 175, 55, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3 style="font-size: 1.3rem; color: var(--color-primary-dark); margin-bottom: 15px; font-family: 'Playfair Display', serif;">3. Selección y Pago</h3>
+            <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Navega por nuestro menú, añade tus productos deseados al carrito y finaliza la compra vía WhatsApp con tu 50% de reserva.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         MENU SECTION (Vitrina de Productos)
+         ========================================================================== */ -->
+    <section class="section-padding" style="background-color: var(--bg-secondary);" id="menu">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">Nuestras Especialidades</h2>
+          <p class="section-subtitle">Explora nuestra selección diaria de panes crujientes horneados al amanecer y pastelería fina de autor.</p>
+          
+          <!-- Filtros de Menú -->
+          <div class="menu-tabs">
+            <button class="tab-btn active" data-filter="all">Todas las especialidades</button>
+            <button class="tab-btn" data-filter="breads">Panes</button>
+            <button class="tab-btn" data-filter="empanadas">Empanadas</button>
+            <button class="tab-btn" data-filter="platos">Platos Caseros</button>
+            <button class="tab-btn" data-filter="pastries">Pastelería</button>
+            <button class="tab-btn" data-filter="cocteleria">Coctelería</button>
+            <button class="tab-btn" data-filter="pizzas">Pizzas</button>
+            <button class="tab-btn" data-filter="veggie">Veggie</button>
+          </div>
+        </div>
+        
+        <!-- Grid Dinámico de Productos (poblado por JS) -->
+        <div class="menu-grid" id="menuGrid">
+          <!-- Los productos se cargarán dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         PASTRY SELECTION EXPERIENCE SHOWCASE (Extra)
+         ========================================================================== */ -->
+    <section class="section-padding pastry-showcase">
+      <div class="container">
+        <div class="pastry-grid">
+          <div class="pastry-image-container reveal">
+            <div class="pastry-img-border">
+              <img src="assets/pastry_selection.png" alt="Detalle de pastelería fina de Ambrosia" loading="lazy">
+            </div>
+          </div>
+          
+          <div class="pastry-content reveal reveal-delay-1">
+            <div class="hero-tagline" style="color: var(--color-accent);">Delicadeza y Sabores Divinos</div>
+            <h3>Alta Pastelería de Autor</h3>
+            <p>
+              Nuestra pastelería es el reflejo del rigor técnico de la repostería clásica europea combinado con la frescura y calidez de los ingredientes chilenos. Cada torta y pastel individual está diseñado para cautivar la vista y maravillar en boca.
+            </p>
+            <p>
+              Preparamos exquisitas tartas de manzana y nueces recién horneadas, mini pastelitos surtidos ideales para compartir y una selección de pastelería de autor diseñada para deleitar a tus invitados. Ideales tanto para consentirse una tarde de café como para coronar el banquete de una gran celebración.
+            </p>
+            <a href="#menu" class="btn btn-secondary">Explorar Galería Dulce</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         CONTACT, STATUS & LOCATION SECTION
+         ========================================================================== */ -->
+    <section class="section-padding" id="contacto">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="section-title">Escríbenos y Reserva</h2>
+          <p class="section-subtitle">¿Tienes una celebración en mente o deseas encargar un pastel especial? Envíanos tu mensaje y te responderemos a la brevedad.</p>
+        </div>
+        
+        <div class="contact-grid">
+          <!-- Datos de Contacto y Horarios -->
+          <div class="contact-info-panel reveal">
+            
+            <!-- Estado en Vivo de la Tienda (Calculado en JS) -->
+            <div class="status-badge open" id="statusBadge">
+              <span class="status-dot"></span> Abierto Ahora
+            </div>
+            <p id="statusLabel" style="color: var(--text-muted); font-size: 0.95rem; margin-top: -24px; margin-bottom: 8px;">
+              ¡Te esperamos en nuestro salón de té para disfrutar de los mejores sabores!
+            </p>
+            
+            <div class="info-items">
+              <!-- Item 1: Dirección -->
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <div class="info-item-content">
+                  <h4>Ubicación</h4>
+                  <p>Ejército 2154, Barrancas<br>San Antonio</p>
+                </div>
+              </div>
+              
+              <!-- Item 2: Teléfono -->
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="info-item-content">
+                  <h4>Teléfono & WhatsApp</h4>
+                  <p>+56 9 5518 2841</p>
+                </div>
+              </div>
+              
+              <!-- Item 3: Email -->
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div class="info-item-content">
+                  <h4>Correo Electrónico</h4>
+                  <p>contacto@ambrosiadivinosabor.cl<br>eventos@ambrosiadivinosabor.cl</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Mapa Estético Simulado -->
+            <div class="map-placeholder">
+              <div class="map-aesthetic">
+                <!-- Icon: map pin -->
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.12 3.88a2.5 2.5 0 0 1 0 3.54L7.5 14H3v-4.5l6.58-6.58a2.5 2.5 0 0 1 3.54 0Z"/><path d="m16 9 2.5 2.5a2.5 2.5 0 0 1 0 3.54l-6.58 6.58H7.5v-4.5l6.58-6.58a2.5 2.5 0 0 1 3.54 0Z"/><line x1="3" x2="21" y1="22" y2="22"/></svg>
+                <strong style="color: var(--color-primary-dark); font-size: 0.95rem;">Mapa de San Antonio, Sector Barrancas</strong>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Formulario de Contacto -->
+          <div class="contact-card reveal reveal-delay-1">
+            <form id="contactForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="formName">Nombre completo *</label>
+                  <input type="text" id="formName" required placeholder="Ej: Alejandra González">
+                </div>
+                <div class="form-group">
+                  <label for="formEmail">Correo electrónico *</label>
+                  <input type="email" id="formEmail" required placeholder="Ej: ale.gonzalez@correo.cl">
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="formPhone">Teléfono de contacto</label>
+                  <input type="tel" id="formPhone" placeholder="Ej: +56912345678">
+                </div>
+                <div class="form-group">
+                  <label for="formSubject">Asunto *</label>
+                  <input type="text" id="formSubject" required placeholder="Ej: Reserva de Pastel, Consulta banquetería">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="formDate">Fecha de Reserva (Opcional)</label>
+                <input type="date" id="formDate" style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none; transition: border-color 0.3s; color-scheme: dark;">
+              </div>
+              
+              <div class="form-group">
+                <label for="formMessage">Tu mensaje / Detalles de tu consulta *</label>
+                <textarea id="formMessage" required placeholder="Cuéntanos sobre tu idea de celebración, cantidad de personas, fechas de interés o pedidos especiales..."></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-submit">Enviar Solicitud</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== */ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Columna 1: Logo & Desc -->
+        <div class="footer-col">
+          <a href="#home" class="logo footer-logo" style="display: flex; align-items: center; gap: 12px; flex-direction: row; margin-bottom: 12px;">
+            <img src="assets/logo.jpg" alt="Logo Ambrosia Divino Sabor" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--color-accent);">
+            <div style="display: flex; flex-direction: column;">
+              <span class="logo-main" style="color: var(--white);">Ambrosía</span>
+              <span class="logo-sub" style="color: var(--color-accent);">Divino Sabor</span>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Panadería rústica tradicional, pastelería de vanguardia y banquetes memorables para momentos especiales. Calidez de hogar, elegancia de alta cocina.
+          </p>
+          <div class="social-links" style="display:flex; flex-direction:column; gap:10px; align-items:flex-start;">
+            <a href="https://instagram.com/ambrosia_divino_sabor" class="social-link" aria-label="Síguenos en Instagram" style="display:flex; align-items:center; gap:8px; width:auto;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+              <span style="font-size:14px;">@ambrosia_divino_sabor</span>
+            </a>
+            <a href="https://facebook.com/cocteleriaambrosiadivinosabor" class="social-link" aria-label="Síguenos en Facebook" style="display:flex; align-items:center; gap:8px; width:auto;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              <span style="font-size:14px;">cocteleriaambrosiadivino sabor</span>
+            </a>
+            <a href="https://tiktok.com/@ambrosiadivinosabor" class="social-link" aria-label="Síguenos en TikTok" style="display:flex; align-items:center; gap:8px; width:auto;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v3a3 3 0 0 1-3-3v11a7 7 0 1 1-7-7z"/></svg>
+              <span style="font-size:14px;">síguenos en tik tok ambrosiadivinosabor</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Columna 2: Links -->
+        <div class="footer-col">
+          <h4>Explorar</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#how-to-order">Cómo pedir</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'breads\']').click()">Panes</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'empanadas\']').click()">Empanadas</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'platos\']').click()">Platos Caseros</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'pastries\']').click()">Pastelería</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'cocteleria\']').click()">Coctelería</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'pizzas\']').click()">Pizzas</a></li>
+            <li><a href="#menu" onclick="document.querySelector('[data-filter=\'veggie\']').click()">Veggie</a></li>
+          </ul>
+        </div>
+        
+        <!-- Columna 3: Horarios -->
+        <div class="footer-col">
+          <h4>Horarios</h4>
+          <div>
+            <p class="time-row"><span>Martes - Sábado</span> <span>08:30 - 20:30</span></p>
+            <p class="time-row"><span>Domingo</span> <span>08:30 - 19:30</span></p>
+            <p class="time-row" style="color: var(--color-accent);"><span>Lunes</span> <span>Cerrado</span></p>
+          </div>
+        </div>
+        
+        <!-- Columna 4: Políticas -->
+        <div class="footer-col">
+          <h4>Políticas de Compra</h4>
+          <ul class="footer-links" style="font-size: 0.85rem; line-height: 1.5; color: var(--text-muted);">
+            <li style="margin-bottom: 8px;"><b>Pagos:</b> Transferencias bancarias y Efectivo.<br>Cancelar 50% al reservar y 50% al entregar.</li>
+            <li style="margin-bottom: 8px;"><b>Delivery:</b> Gratis por compras superiores a $50.000 dentro de San Antonio.</li>
+            <li><b>Atención:</b> Personalizada, respuesta en menos de 2 horas.</li>
+            <li style="margin-top: 8px;"><b>Cancelaciones:</b> <a href="javascript:void(0)" onclick="document.getElementById('policyModal').showModal()" style="color: var(--color-primary); text-decoration: underline;">Ver Política de Cancelaciones y Devoluciones</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Ambrosia Divino Sabor. Todos los derechos reservados.</p>
+        <p>San Antonio. | <a href="javascript:void(0)" onclick="document.getElementById('privacyModal').showModal()" style="color: var(--text-muted); text-decoration: underline; font-size: 0.85rem;">Política de Privacidad</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       PRODUCT DETAIL MODAL (NATIVO <dialog>)
+       ========================================================================== */ -->
+  <dialog class="product-modal" id="productModal">
+    <div class="modal-header-img">
+      <img src="assets/hero_bakery.png" alt="Imagen del producto">
+      <button class="btn-close-modal" aria-label="Cerrar modal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    
+    <div class="modal-content">
+      <div class="modal-title-row">
+        <h3>Nombre de Especialidad</h3>
+        <span class="modal-price">$0.000</span>
+      </div>
+      <p class="modal-desc">Descripción del producto va aquí...</p>
+      
+      <div class="modal-meta-section">
+        <h4 class="modal-meta-title">Ingredientes e Información de Alérgenos</h4>
+        <div class="modal-allergens">
+          <span class="allergen-tag">Gluten</span>
+        </div>
+        <p class="modal-ingredients">Harina, agua, masa madre, sal.</p>
+      </div>
+      
+      <div class="modal-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+        <div class="quantity-selector" style="display: flex; align-items: center; border: 1px solid rgba(0,0,0,0.1); border-radius: 4px;">
+          <button type="button" class="qty-btn" id="modalQtyMinus" style="padding: 5px 12px; background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--text-main);">-</button>
+          <span class="qty-display" id="modalQty" style="padding: 0 10px; font-weight: 600; font-size: 1rem;">1</span>
+          <button type="button" class="qty-btn" id="modalQtyPlus" style="padding: 5px 12px; background: none; border: none; cursor: pointer; font-size: 1.1rem; color: var(--text-main);">+</button>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-secondary" onclick="document.getElementById('productModal').close()">Cerrar</button>
+          <button class="btn btn-primary" id="btnAddToCart">Añadir al Carrito</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Policy Modal -->
+  <dialog id="policyModal" class="modal-container">
+    <div class="modal-content" style="max-width: 600px; padding: 30px;">
+      <h3 style="font-family: 'Playfair Display', serif; color: var(--color-primary-dark); margin-bottom: 20px; font-size: 1.5rem; text-align: center;">Política de Cancelaciones y Devoluciones</h3>
+      
+      <div style="font-size: 0.95rem; color: var(--text-main); line-height: 1.6;">
+        <p style="margin-bottom: 15px;">En <strong>Ambrosía Divino Sabor</strong> trabajamos con ingredientes frescos y elaboramos cada producto de manera artesanal y exclusiva para tu evento. Por este motivo, al momento de agendar pedidos de coctelería y pastelería, solicitamos un anticipo del 50% del valor total para reservar tu cupo y comenzar con la planificación.</p>
+        
+        <p style="margin-bottom: 15px;">Para garantizar el mejor servicio, aplicamos las siguientes políticas en caso de anulaciones:</p>
+        
+        <ol style="padding-left: 20px; margin-bottom: 20px;">
+          <li style="margin-bottom: 10px;"><strong>Aviso con anticipación:</strong> Toda cancelación o modificación del pedido debe realizarse con un mínimo de <strong>48 horas de anticipación</strong> a la fecha y hora acordada para la entrega.</li>
+          <li style="margin-bottom: 10px;"><strong>Reembolsos:</strong> Si la cancelación se realiza respetando el plazo mencionado (48 horas antes), se reembolsará el 100% del anticipo abonado.</li>
+          <li style="margin-bottom: 10px;"><strong>Cancelaciones fuera de plazo:</strong> Si la anulación se realiza con menos de 48 horas de anticipación a la fecha de entrega, <strong>no se realizará la devolución del anticipo del 50%</strong>, ya que este monto cubrirá los gastos operativos, la compra de insumos frescos y el tiempo de producción ya invertido en tu pedido.</li>
+        </ol>
+        
+        <p style="text-align: center; font-style: italic; color: var(--text-muted);">Agradecemos tu comprensión y preferencia por elegir nuestro trabajo artesanal.</p>
+      </div>
+
+      <div class="modal-actions" style="display: flex; justify-content: center; margin-top: 25px;">
+        <button class="btn btn-primary" onclick="document.getElementById('policyModal').close()" style="min-width: 150px;">Entendido</button>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!-- Cart Sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="close-cart" id="closeCartBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItemsContainer">
+      <!-- Items dynamically added here -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotalPrice">$0</strong>
+      </div>
+      <button class="btn btn-primary" id="btnCheckout" style="width: 100%; margin-top: 15px;">Finalizar Compra</button>
+      <p style="font-size: 0.75rem; color: var(--text-muted); text-align: center; margin-top: 15px; line-height: 1.4;">
+        <b>Pago:</b> 50% al reservar, 50% en entrega.<br>
+        <b>Delivery gratis:</b> Compras sobre $50.000 en San Antonio.
+      </p>
+    </div>
+  </div>
+
+  <!-- Lógica JavaScript -->
+  <script src="app.js"></script>
+
+  <!-- Auth Modal -->
+  <dialog id="authModal" class="modal-container">
+    <div class="modal-content auth-modal-content" style="max-width: 450px; padding: 0; overflow: hidden; position: relative;">
+      <div class="auth-tabs" style="display: flex; background: var(--bg-card); border-bottom: 1px solid var(--border-color);">
+        <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')" style="flex: 1; padding: 20px; background: none; border: none; font-weight: 600; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--color-primary); border-bottom: 3px solid var(--color-primary); cursor: pointer; transition: all 0.3s ease;">Iniciar Sesión</button>
+        <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')" style="flex: 1; padding: 20px; background: none; border: none; font-weight: 600; font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-muted); border-bottom: 3px solid transparent; cursor: pointer; transition: all 0.3s ease;">Registrarse</button>
+      </div>
+      
+      <div class="auth-body" style="padding: 30px;">
+        <!-- Formulario Login -->
+        <form id="formLogin" class="auth-form active" style="display: block;">
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="loginEmail" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Correo Electrónico</label>
+            <input type="email" id="loginEmail" required style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none; transition: border-color 0.3s;">
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="loginPass" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Contraseña</label>
+            <input type="password" id="loginPass" required style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none; transition: border-color 0.3s;">
+          </div>
+          <div style="text-align: right; margin-bottom: 25px;">
+            <a href="#" class="auth-forgot" style="color: var(--color-primary); font-size: 0.85rem; text-decoration: none;">¿Olvidaste tu contraseña?</a>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Ingresar a mi Cuenta</button>
+        </form>
+
+        <!-- Formulario Registro -->
+        <form id="formRegister" class="auth-form" style="display: none;">
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="regName" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Nombre Completo</label>
+            <input type="text" id="regName" required style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none;">
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="regEmail" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Correo Electrónico</label>
+            <input type="email" id="regEmail" required style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none;">
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="regPhone" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Teléfono</label>
+            <input type="tel" id="regPhone" required style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none;">
+          </div>
+          <div class="form-group" style="margin-bottom: 25px;">
+            <label for="regPass" style="display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem;">Contraseña</label>
+            <input type="password" id="regPass" required minlength="6" style="width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-card); color: var(--text-main); font-size: 0.95rem; outline: none;">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Crear Cuenta</button>
+        </form>
+      </div>
+      
+      <button class="close-auth" onclick="document.getElementById('authModal').close()" aria-label="Cerrar" style="position: absolute; top: 18px; right: 20px; background: rgba(0,0,0,0.1); border-radius: 50%; padding: 5px; border: none; cursor: pointer; color: var(--text-main); display: flex; transition: background 0.3s;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </dialog>
+
+
+  <!-- Privacy Policy Modal -->
+  <dialog id="privacyModal" class="modal-container">
+    <div class="modal-content" style="max-width: 650px; padding: 30px;">
+      <h3 style="font-family: 'Playfair Display', serif; color: var(--color-primary-dark); margin-bottom: 20px; font-size: 1.5rem; text-align: center;">Política de Privacidad</h3>
+      
+      <div style="font-size: 0.9rem; color: var(--text-main); line-height: 1.6; max-height: 60vh; overflow-y: auto; padding-right: 15px;">
+        <p style="margin-bottom: 15px;">En <strong>Ambrosía Divino Sabor</strong> ("la PYME", "nosotros", "nuestro"), respetamos y protegemos la privacidad de nuestros clientes. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información personal que nos proporcionas al utilizar nuestro sitio web y nuestra oferta gastronómica.</p>
+        
+        <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 1.05rem;">1. Información que Recopilamos</h4>
+        <p style="margin-bottom: 15px;">Recopilamos información personal básica (como nombre, correo electrónico, número de teléfono y dirección de entrega) exclusivamente cuando interactúas con nosotros para registrarte, enviar consultas o procesar pedidos a través del carrito de compras y WhatsApp.</p>
+        
+        <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 1.05rem;">2. Uso de tu Información</h4>
+        <ul style="padding-left: 20px; margin-bottom: 15px;">
+          <li style="margin-bottom: 5px;"><strong>Gestión de Pedidos:</strong> Utilizamos tus datos para contactarte, coordinar pagos y entregar los productos en la fecha y dirección acordadas (dentro de San Antonio).</li>
+          <li style="margin-bottom: 5px;"><strong>Comunicación:</strong> Para enviarte detalles de tus reservas, información de Club Ambrosia y notificaciones de servicio al cliente.</li>
+        </ul>
+        
+        <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 1.05rem;">3. Protección y Almacenamiento</h4>
+        <p style="margin-bottom: 15px;">Implementamos un sistema seguro que almacena la información de sesión localmente en tu dispositivo. <strong>Nos comprometemos a no vender, intercambiar ni transferir a terceros tu información personal</strong>, salvo que sea requerido por la ley aplicable.</p>
+
+        <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 1.05rem;">4. Uso de WhatsApp</h4>
+        <p style="margin-bottom: 15px;">Dado que utilizamos WhatsApp como plataforma para concretar pagos y pedidos, los datos compartidos a través de ese medio también están sujetos a las políticas de privacidad y cifrado de extremo a extremo de Meta Inc.</p>
+
+        <h4 style="color: var(--color-primary); margin: 15px 0 10px 0; font-size: 1.05rem;">5. Cambios en esta Política</h4>
+        <p style="margin-bottom: 15px;">Podemos actualizar esta política ocasionalmente para reflejar mejoras en nuestro servicio. Te invitamos a revisar esta sección periódicamente.</p>
+      </div>
+
+      <div class="modal-actions" style="display: flex; justify-content: center; margin-top: 25px;">
+        <button class="btn btn-primary" onclick="document.getElementById('privacyModal').close()" style="min-width: 150px;">Aceptar y Cerrar</button>
+      </div>
+    </div>
+  </dialog>
+
+
+  <!-- Floating Chat Widget -->
+  <div class="chat-widget-container" id="chatWidgetContainer">
+    <div class="chat-widget-window" id="chatWidgetWindow">
+      <div class="chat-widget-header">
+        <div class="chat-header-info">
+          <img src="assets/logo.jpg" alt="Ambrosía Logo">
+          <div>
+            <strong>Ambrosía Divino Sabor</strong>
+            <span>En línea</span>
+          </div>
+        </div>
+        <button class="chat-close-btn" onclick="toggleChat()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="chat-widget-body" id="chatWidgetBody">
+        <!-- Messages go here -->
+      </div>
+      <div class="chat-widget-footer" id="chatWidgetFooter">
+        <!-- Quick replies go here -->
+      </div>
+    </div>
+    
+    <button class="chat-widget-fab" id="chatWidgetFab" onclick="toggleChat()" aria-label="Abrir chat">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </button>
+  </div>
+
+</body>
+</html>
